@@ -1,0 +1,9 @@
+# Tooling / local-only (not part of the site)
+.claude/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Dependencies (none currently, but just in case)
+node_modules/
