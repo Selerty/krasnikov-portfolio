@@ -178,6 +178,24 @@ body {
 .repo__name { font-family:'JetBrains Mono', monospace; font-weight:600; font-size:15px; color:var(--accent); }
 a.repo__name { text-decoration:none; }
 a.repo__name:hover { text-decoration:underline; }
+a.repo__name::after {
+  content:"\2197"; /* ↗ */
+  display:inline-block;
+  margin-left:6px;
+  font-size:.82em;
+  font-weight:700;
+  text-decoration:none;
+  animation:repo-go 1.8s ease-in-out infinite;
+  transition:transform .18s ease;
+}
+a.repo__name:hover::after { animation:none; transform:translate(3px,-3px); }
+@keyframes repo-go {
+  0%,100% { transform:translate(0,0); opacity:.65; }
+  50%     { transform:translate(2px,-2px); opacity:1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  a.repo__name::after { animation:none; opacity:1; }
+}
 .repo__tag {
   margin-left:auto; border:1px solid var(--border); border-radius:999px;
   font-size:11px; padding:2px 8px; color:var(--faint); font-family:'JetBrains Mono', monospace;
