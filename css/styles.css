@@ -167,6 +167,14 @@ body {
   appearance:none; border:none; background:none; cursor:pointer;
   font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent);
 }
+.link-btn::after {
+  content:"\2192"; /* → */
+  display:inline-block;
+  margin-left:5px;
+  transition:transform .2s ease;
+}
+.link-btn:hover::after { transform:translateX(5px); }
+@media (prefers-reduced-motion: reduce) { .link-btn::after { transition:none; } }
 
 /* ===== Pinned repos ===== */
 .pinned { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
