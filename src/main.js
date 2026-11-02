@@ -1,6 +1,3 @@
-document.documentElement.classList.add('js');
-
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const header = document.querySelector('[data-header]');
 const menuButton = document.querySelector('[data-menu-toggle]');
 const navigation = document.querySelector('[data-nav]');
@@ -39,31 +36,20 @@ window.addEventListener('resize', () => {
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
-const revealItems = document.querySelectorAll('.reveal');
-if (reducedMotion.matches || !('IntersectionObserver' in window)) {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-} else {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-  revealItems.forEach((item) => revealObserver.observe(item));
-}
-
 const cases = {
   platform: {
-    kicker: 'FLAGSHIP · B2B SAAS · WEB3 · NDA',
-    title: 'Аналитическая платформа для стейкинга',
-    summary: 'Двусторонняя B2B-платформа аналитики по 15+ сетям: одна сторона — валидаторы-хостеры, другая — стейкеры.',
+    kicker: 'ГЛАВНЫЙ КЕЙС · B2B SAAS · WEB3 · NDA',
+    title: 'B2B-платформа аналитики стейкинга',
+    summary: 'Продукт вырос из задачи крупного валидатора отслеживать перформанс своих валидаторов в разных сетях — и стал двусторонней платформой для валидаторов-хостеров и стейкеров.',
     sections: [
-      ['Задача', '<p>Запустить с нуля продукт, который объединяет сложные ончейн-данные и одинаково полезен двум сторонам рынка.</p>'],
-      ['Что сделал', '<ul><li>Провёл продукт от первой гипотезы и MVP до партнёрств с протоколами.</li><li>Сам прототипировал ключевые функции и передавал их разработке.</li><li>Собрал распределённую международную команду и выстроил быстрый цикл поставки.</li><li>Добавил AI-ассистента, MCP-сервер и llms.txt для машиночитаемых данных.</li></ul>'],
-      ['Результат', '<p>Работающая платформа по 15+ сетям с монетизацией через партнёрства и AI-native-сценариями внутри продукта.</p>']
+      ['Моя роль', '<p>Отвечал за стратегию и roadmap, монетизацию и P&amp;L, найм и управление командой. Сам прототипировал ключевые решения и работал с кодом. Команда — <strong>16–20 человек</strong>, прямые подчинённые — <strong>16–20 человек</strong>.</p>'],
+      ['Решение 1. Сначала валидаторы, затем стейкеры', '<p>Первая версия решала конкретную задачу заказчика — крупного валидатора в нескольких сетях. Это позволило сфокусировать MVP на понятном сценарии мониторинга перформанса. После проверки этой основы продукт расширился на вторую сторону рынка — стейкеров.</p>'],
+      ['Решение 2. Единая модель данных и адаптеры', '<p>Для масштабирования выбрал архитектуру с единой моделью данных и адаптерами отдельных сетей. Новые блокчейны подключались к общему продуктовому ядру, а не превращались в отдельные несовместимые версии платформы. Так продукт вырос до <strong>15+ сетей</strong>.</p>'],
+      ['Решение 3. AI-native слой', '<p>Добавил AI-ассистента, MCP-сервер и llms.txt. Аналитика стала доступна не только через интерфейс, но и через машиночитаемые AI-сценарии.</p>'],
+      ['Операционный опыт', '<p>Оперировал <strong>testnet-валидаторами</strong> — практическая работа с инфраструктурой в дополнение к продуктовой роли.</p>'],
+      ['Результат', '<ul><li>От первой гипотезы до запуска — <strong>7–12 месяцев</strong>.</li><li><strong>1 000–10 000 активных пользователей</strong>.</li><li>Двусторонняя B2B-платформа по <strong>15+ блокчейн-сетям</strong>.</li><li>Стратегия, монетизация, команда и инженерные решения объединены в одной зоне ответственности.</li></ul>']
     ],
-    note: 'Название компании и данные скрыты по NDA. Визуал на главной — обезличенная схема, не реальный интерфейс.'
+    note: 'Название компании скрыто по NDA. Показатели опубликованы диапазонами. Схема на главной показывает архитектуру решения, а не интерфейс продукта.'
   },
   marketplace: {
     kicker: 'THE ABYSS · TWO-SIDED MARKETPLACE · 2020—2021',
@@ -78,7 +64,7 @@ const cases = {
   notara: {
     kicker: 'СОБСТВЕННЫЙ ПРОДУКТ · PRODUCTIVITY SAAS · LIVE',
     title: 'Notara: рабочее пространство с AI',
-    summary: 'Облачное рабочее пространство для заметок и документов — от блочного редактора до встроенного AI-ассистента.',
+    summary: 'Работающий SaaS, созданный самостоятельно — от блочного редактора до встроенного AI-ассистента.',
     sections: [
       ['Продукт', '<p>Notara объединяет заметки, иерархию страниц, публичные ссылки и AI-ассистента в одном рабочем пространстве.</p>'],
       ['Что сделано', '<ul><li>Блочный редактор и иерархия страниц.</li><li>Публичные ссылки для распространения документов.</li><li>Встроенный AI-ассистент.</li><li>Облачная инфраструктура в РФ.</li></ul>'],
@@ -93,10 +79,17 @@ const dialogKicker = document.querySelector('#dialog-kicker');
 const dialogTitle = document.querySelector('#dialog-title');
 const dialogContent = document.querySelector('#dialog-content');
 const dialogExternal = document.querySelector('#dialog-external');
+let activeCase = null;
 
-function openCase(caseId) {
+function caseFromHash() {
+  const match = location.hash.match(/^#case-(platform|marketplace|notara)$/);
+  return match ? match[1] : null;
+}
+
+function openCase(caseId, updateUrl = true) {
   const item = cases[caseId];
   if (!item || !dialog) return;
+  activeCase = caseId;
   dialogKicker.textContent = item.kicker;
   dialogTitle.textContent = item.title;
   dialogContent.innerHTML = `
@@ -106,8 +99,9 @@ function openCase(caseId) {
   `;
   dialogExternal.hidden = !item.external;
   if (item.external) dialogExternal.href = item.external;
-  dialog.showModal();
+  if (!dialog.open) dialog.showModal();
   dialog.querySelector('.dialog-shell').scrollTop = 0;
+  if (updateUrl) history.replaceState(null, '', `#case-${caseId}`);
 }
 
 document.querySelectorAll('[data-case]').forEach((button) => {
@@ -117,45 +111,16 @@ document.querySelector('[data-dialog-close]')?.addEventListener('click', () => d
 dialog?.addEventListener('click', (event) => {
   if (event.target === dialog) dialog.close();
 });
+dialog?.addEventListener('close', () => {
+  activeCase = null;
+  if (caseFromHash()) history.replaceState(null, '', '#cases');
+});
 
-const caseCursor = document.querySelector('[data-case-cursor]');
-if (caseCursor && window.matchMedia('(pointer: fine)').matches && !reducedMotion.matches) {
-  document.querySelectorAll('.case-media').forEach((media) => {
-    media.addEventListener('pointerenter', () => caseCursor.classList.add('is-visible'));
-    media.addEventListener('pointermove', (event) => {
-      caseCursor.style.left = `${event.clientX}px`;
-      caseCursor.style.top = `${event.clientY}px`;
-    });
-    media.addEventListener('pointerleave', () => caseCursor.classList.remove('is-visible'));
-    media.addEventListener('focus', () => caseCursor.classList.remove('is-visible'));
-  });
+function syncCaseWithHash() {
+  const caseId = caseFromHash();
+  if (caseId && activeCase !== caseId) openCase(caseId, false);
+  if (!caseId && dialog?.open) dialog.close();
 }
 
-const caseTitles = [...document.querySelectorAll('[data-case-title]')];
-let parallaxFrame = 0;
-let lastParallaxUpdate = 0;
-
-function updateCaseTitles(now = 0) {
-  if (now - lastParallaxUpdate < 30) return;
-  lastParallaxUpdate = now;
-  caseTitles.forEach((title) => {
-    const section = title.closest('.case');
-    const rect = section.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-    const distance = (window.innerHeight / 2) - (rect.top + rect.height / 2);
-    const shift = Math.max(-22, Math.min(22, distance * 0.045));
-    title.style.setProperty('--case-shift', `${shift.toFixed(2)}px`);
-  });
-  parallaxFrame = 0;
-}
-
-function requestParallax() {
-  if (reducedMotion.matches || parallaxFrame) return;
-  parallaxFrame = requestAnimationFrame(updateCaseTitles);
-}
-
-if (!reducedMotion.matches && caseTitles.length) {
-  window.addEventListener('scroll', requestParallax, { passive: true });
-  window.addEventListener('resize', requestParallax);
-  updateCaseTitles();
-}
+window.addEventListener('hashchange', syncCaseWithHash);
+syncCaseWithHash();
